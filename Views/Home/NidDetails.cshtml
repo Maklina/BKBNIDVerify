@@ -1,0 +1,442 @@
+﻿@model BKBNIDVerify.Models.SuccessDetailsResponse
+
+@{
+    ViewBag.Title = "NidDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script>
+
+    function printContent(el) {
+        var restorepage = document.body.innerHTML;
+        var printcontent = document.getElementById(el).innerHTML;
+        document.body.innerHTML = printcontent;
+        window.print();
+        document.body.innerHTML = restorepage;
+    }
+</script>
+<a  href="@Html.DisplayFor(model => model.success.data.photo)">
+    <center>Click here To Download Photo</center> 
+</a>
+@*<img src="@Html.DisplayFor(model => model.success.data.photo)" alt="Click To DownloadImage" style="height:150px;width:120px;" />*@
+
+
+<div id="content">
+    <table id="t01" class="center">
+
+
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.success.data.requestId)
+
+            </td>
+            <td colspan="5">
+                @Html.DisplayFor(model => model.success.data.requestId)
+            </td>
+
+        </tr>
+        <tr>
+
+            @{ var imagePath = "";
+                var destinationExt = ".jpg";
+                var Id = Model.success.data.pin;
+                var destinationFileName = Id + destinationExt;
+
+
+                imagePath = @"NIDImages\" + destinationFileName;
+
+            }
+
+            <td rowspan="12">
+
+
+
+                </br>
+                <img src="@imagePath" alt="" style="height:150px;width:120px;" />
+                <br />
+            </td>
+        </tr>
+        <tr>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.success.data.name)
+            </td>
+
+            <td colspan="3">
+                @Html.DisplayFor(model => model.success.data.name)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.success.data.nameEn)
+            </td>
+
+            <td colspan="3">
+                @Html.DisplayFor(model => model.success.data.nameEn)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.success.data.dateOfBirth)
+            </td>
+
+            <td colspan="3">
+                @Html.DisplayFor(model => model.success.data.dateOfBirth)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.success.data.father)
+            </td>
+
+            <td colspan="3">
+                @Html.DisplayFor(model => model.success.data.father)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.success.data.mother)
+            </td>
+
+            <td colspan="3">
+                @Html.DisplayFor(model => model.success.data.mother)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.success.data.spouse)
+            </td>
+
+            <td colspan="3">
+                @Html.DisplayFor(model => model.success.data.spouse)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.success.data.occupation)
+            </td>
+
+            <td colspan="3">
+                @Html.DisplayFor(model => model.success.data.occupation)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.success.data.bloodGroup)
+            </td>
+
+            <td colspan="3">
+                @Html.DisplayFor(model => model.success.data.bloodGroup)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.success.data.nationalId)
+            </td>
+
+            <td colspan="3">
+                @Html.DisplayFor(model => model.success.data.nationalId)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.success.data.pin)
+            </td>
+
+            <td colspan="3">
+                @Html.DisplayFor(model => model.success.data.pin)
+            </td>
+        </tr>
+
+        <tr><td rowspan="9">Present Address</td></tr>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.success.data.presentAddress.division)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.success.data.presentAddress.division)
+            </td>
+            <td>
+                @Html.DisplayNameFor(model => model.success.data.presentAddress.district)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.success.data.presentAddress.district)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.success.data.presentAddress.rmo)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.success.data.presentAddress.rmo)
+            </td>
+            <td>
+                @Html.DisplayNameFor(model => model.success.data.presentAddress.cityCorporationOrMunicipality)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.success.data.presentAddress.cityCorporationOrMunicipality)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.success.data.presentAddress.upozila)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.success.data.presentAddress.upozila)
+            </td>
+            <td>
+                @Html.DisplayNameFor(model => model.success.data.presentAddress.unionOrWard)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.success.data.presentAddress.unionOrWard)
+            </td>
+        </tr>
+        <tr>
+
+            <td>
+                @Html.DisplayNameFor(model => model.success.data.presentAddress.mouzaOrMoholla)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.success.data.presentAddress.mouzaOrMoholla)
+            </td>
+            <td>
+                @Html.DisplayNameFor(model => model.success.data.presentAddress.additionalMouzaOrMoholla)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.success.data.presentAddress.additionalMouzaOrMoholla)
+            </td>
+        </tr>
+        <tr>
+
+            <td>
+                @Html.DisplayNameFor(model => model.success.data.presentAddress.villageOrRoad)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.success.data.presentAddress.villageOrRoad)
+            </td>
+            <td>
+                @Html.DisplayNameFor(model => model.success.data.presentAddress.additionalVillageOrRoad)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.success.data.presentAddress.additionalVillageOrRoad)
+            </td>
+        </tr>
+        <tr>
+
+            <td>
+                @Html.DisplayNameFor(model => model.success.data.presentAddress.wardForUnionPorishod)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.success.data.presentAddress.wardForUnionPorishod)
+            </td>
+
+            <td>
+                @Html.DisplayNameFor(model => model.success.data.presentAddress.homeOrHoldingNo)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.success.data.presentAddress.homeOrHoldingNo)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.success.data.presentAddress.postOffice)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.success.data.presentAddress.postOffice)
+            </td>
+            <td>
+                @Html.DisplayNameFor(model => model.success.data.presentAddress.postalCode)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.success.data.presentAddress.postalCode)
+            </td>
+        </tr>
+
+        <tr>
+
+            <td>
+                @Html.DisplayNameFor(model => model.success.data.presentAddress.region)
+            </td>
+            <td colspan="3">
+                @Html.DisplayFor(model => model.success.data.presentAddress.region)
+            </td>
+        </tr>
+
+        <tr><td rowspan="9">Permanent Address</td></tr>
+
+
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.success.data.permanentAddress.division)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.success.data.permanentAddress.division)
+            </td>
+            <td>
+                @Html.DisplayNameFor(model => model.success.data.permanentAddress.district)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.success.data.permanentAddress.district)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.success.data.permanentAddress.rmo)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.success.data.permanentAddress.rmo)
+            </td>
+            <td>
+                @Html.DisplayNameFor(model => model.success.data.permanentAddress.cityCorporationOrMunicipality)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.success.data.permanentAddress.cityCorporationOrMunicipality)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.success.data.permanentAddress.upozila)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.success.data.permanentAddress.upozila)
+            </td>
+            <td>
+                @Html.DisplayNameFor(model => model.success.data.permanentAddress.unionOrWard)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.success.data.permanentAddress.unionOrWard)
+            </td>
+        </tr>
+        <tr>
+
+            <td>
+                @Html.DisplayNameFor(model => model.success.data.permanentAddress.mouzaOrMoholla)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.success.data.permanentAddress.mouzaOrMoholla)
+            </td>
+            <td>
+                @Html.DisplayNameFor(model => model.success.data.permanentAddress.additionalMouzaOrMoholla)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.success.data.permanentAddress.additionalMouzaOrMoholla)
+            </td>
+        </tr>
+        <tr>
+
+            <td>
+                @Html.DisplayNameFor(model => model.success.data.permanentAddress.villageOrRoad)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.success.data.permanentAddress.villageOrRoad)
+            </td>
+            <td>
+                @Html.DisplayNameFor(model => model.success.data.permanentAddress.additionalVillageOrRoad)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.success.data.permanentAddress.additionalVillageOrRoad)
+            </td>
+        </tr>
+        <tr>
+
+            <td>
+                @Html.DisplayNameFor(model => model.success.data.permanentAddress.wardForUnionPorishod)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.success.data.permanentAddress.wardForUnionPorishod)
+            </td>
+
+            <td>
+                @Html.DisplayNameFor(model => model.success.data.permanentAddress.homeOrHoldingNo)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.success.data.permanentAddress.homeOrHoldingNo)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.success.data.permanentAddress.postOffice)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.success.data.permanentAddress.postOffice)
+            </td>
+            <td>
+                @Html.DisplayNameFor(model => model.success.data.permanentAddress.postalCode)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.success.data.permanentAddress.postalCode)
+            </td>
+        </tr>
+
+        <tr>
+
+            <td>
+                @Html.DisplayNameFor(model => model.success.data.permanentAddress.region)
+            </td>
+            <td colspan="3">
+                @Html.DisplayFor(model => model.success.data.permanentAddress.region)
+            </td>
+        </tr>
+
+
+    </table>
+
+    <style>
+        table#t01 {
+            width: 70%;
+            height: auto;
+            background-color: #f1f1c1;
+        }
+
+        .center {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        table#t01 tr:nth-child(even) {
+            background-color: #eee;
+        }
+
+        table#t01 tr:nth-child(otd) {
+            background-color: #fff;
+        }
+
+        table#t01 th {
+            color: white;
+            background-color: blue;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 2px;
+            width: auto;
+            height: 10px;
+        }
+    </style>
+</div>
+
+
+
+<p style="text-align:center;">
+    <input id="printdiv" type="submit" value="Print" onclick="printContent('content')" />
+
+    @Html.ActionLink("Verify NID", "Index")
+</p>
+

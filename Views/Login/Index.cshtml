@@ -1,0 +1,66 @@
+﻿@model BKBNIDVerify.Models.LoginModels
+
+@{
+    ViewBag.Title = "LogIn";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+<table class="table table-bordered" align="center">
+    <tr>
+        <td style="text-align:center;">
+            <img src="~/Images/logo.png" class="img-center" height="100" width="100" />
+        </td>
+        <td style="font-size:20px;font-weight:bold;text-align:center;">
+            @Html.Label("Welcome to BKB NID Verification Portal", htmlAttributes: new { @class = "control-label" })
+        </td>
+    </tr>
+
+</table>
+<h4>Enter your User ID and Password to Continue</h4>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4 style="color:red">@TempData["retMsg"]</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.UserId, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.UserId, new { htmlAttributes = new { @class = "form-control", @autocomplete = "off", @plcaeholder = "User ID" } })
+            @Html.ValidationMessageFor(model => model.UserId, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", @plcaeholder = "Password" } })
+            @*@Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })*@
+        </div>
+    </div>
+    <!--<img src="~/Images/logo.png" class="img-center" height="100" width="100" />
+    <img src="@Url.Content("~\\NIDImages\\" + "logo.png")" />
+    <img src="@Url.Content("~\\NIDImages\\19913218260000210.jpg")" />-->
+
+    @* above are ok *@
+
+    <!--<img src="@Url.Content(Environment.CurrentDirectory + "\\NIDImages\\image.jpg")" class="img-center"/>-->
+
+
+  
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="LogIn" class="btn btn-default btn-primary" />
+        </div>
+    </div>
+</div>
+        }
+        <br />
+        <br />
+        <br />
+        <br />
+        <h4 style="color:red">N.B.:Please use your BKBPORTAL userID and password to access the system</h4>
+        <br />

@@ -1,0 +1,278 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Covid19LoanDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Branch">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="branch_code" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="branch_name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="region" Type="varchar" MaxLength="50" />
+          <Property Name="BBCode" Type="varchar" MaxLength="4" />
+          <Property Name="RoutingNo" Type="varchar" MaxLength="50" />
+          <Property Name="agentID" Type="varchar" MaxLength="50" />
+          <Property Name="agentSequence" Type="varchar" MaxLength="50" />
+          <Property Name="token" Type="varchar" MaxLength="50" />
+          <Property Name="Address1" Type="varchar" MaxLength="255" />
+          <Property Name="Address2" Type="varchar" MaxLength="255" />
+          <Property Name="Address3" Type="varchar" MaxLength="255" />
+          <Property Name="City" Type="varchar" MaxLength="100" />
+          <Property Name="MainOffice" Type="varchar" MaxLength="100" />
+          <Property Name="Status" Type="varchar" MaxLength="5" />
+          <Property Name="StoreNum" Type="varchar" MaxLength="10" />
+          <Property Name="ISO" Type="varchar" MaxLength="10" />
+          <Property Name="ZIP" Type="varchar" MaxLength="10" />
+          <Property Name="POSStatus" Type="varchar" MaxLength="10" />
+          <Property Name="UnitProfileID" Type="varchar" MaxLength="20" />
+          <Property Name="AgentPIN" Type="varchar" MaxLength="20" />
+          <Property Name="RAMS" Type="varchar" MaxLength="25" />
+          <Property Name="Partyno" Type="varchar" MaxLength="25" />
+          <Property Name="HQPartyno" Type="varchar" MaxLength="25" />
+          <Property Name="UnitOffice" Type="varchar" MaxLength="25" />
+          <Property Name="Legacy" Type="nvarchar" MaxLength="20" />
+          <Property Name="bankID" Type="int" Nullable="false" />
+          <Property Name="XPreceivingagentcode" Type="varchar" MaxLength="50" />
+          <Property Name="Upazila" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="LoginUser">
+          <Key>
+            <PropertyRef Name="userID" />
+          </Key>
+          <Property Name="userID" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="userPass" Type="varchar" MaxLength="50" />
+          <Property Name="userName" Type="varchar" MaxLength="100" />
+          <Property Name="userRole" Type="int" Nullable="false" />
+          <Property Name="branch_code" Type="varchar" MaxLength="10" />
+          <Property Name="user_status" Type="varchar" MaxLength="1" />
+          <Property Name="first_login" Type="varchar" MaxLength="1" />
+          <Property Name="makerID" Type="varchar" MaxLength="20" />
+          <Property Name="makerTime" Type="date" />
+          <Property Name="checkerID" Type="varchar" MaxLength="20" />
+          <Property Name="checkerTime" Type="date" />
+          <Property Name="updatedBY" Type="varchar" MaxLength="20" />
+          <Property Name="updateTime" Type="date" />
+          <Property Name="UserMobile" Type="varchar" MaxLength="50" />
+          <Property Name="bankID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="role_name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="role_priority" Type="int" />
+          <Property Name="role_description" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <Association Name="fk_LoginUser_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="1" />
+          <End Role="LoginUser" Type="Self.LoginUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="LoginUser">
+              <PropertyRef Name="userRole" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Covid19LoanDBModelStoreContainer">
+          <EntitySet Name="Branch" EntityType="Self.Branch" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LoginUser" EntityType="Self.LoginUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="fk_LoginUser_Role" Association="Self.fk_LoginUser_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="LoginUser" EntitySet="LoginUser" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Covid19LoanDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Branch">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="branch_code" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="branch_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="region" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="BBCode" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="RoutingNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="agentID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="agentSequence" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="token" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Address1" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Address2" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Address3" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="City" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="MainOffice" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="StoreNum" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="ISO" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="ZIP" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="POSStatus" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="UnitProfileID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="AgentPIN" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="RAMS" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="Partyno" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="HQPartyno" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="UnitOffice" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="Legacy" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="bankID" Type="Int32" Nullable="false" />
+          <Property Name="XPreceivingagentcode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Upazila" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="LoginUser">
+          <Key>
+            <PropertyRef Name="userID" />
+          </Key>
+          <Property Name="userID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="userPass" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="userName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="userRole" Type="Int32" Nullable="false" />
+          <Property Name="branch_code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="user_status" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="first_login" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="makerID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="makerTime" Type="DateTime" Precision="0" />
+          <Property Name="checkerID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="checkerTime" Type="DateTime" Precision="0" />
+          <Property Name="updatedBY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="updateTime" Type="DateTime" Precision="0" />
+          <Property Name="UserMobile" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="bankID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Role" Relationship="Self.fk_LoginUser_Role" FromRole="LoginUser" ToRole="Role" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="role_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="role_priority" Type="Int32" />
+          <Property Name="role_description" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="LoginUsers" Relationship="Self.fk_LoginUser_Role" FromRole="Role" ToRole="LoginUser" />
+        </EntityType>
+        <Association Name="fk_LoginUser_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="1" />
+          <End Role="LoginUser" Type="Self.LoginUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="LoginUser">
+              <PropertyRef Name="userRole" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Covid19LoanDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Branches" EntityType="Self.Branch" />
+          <EntitySet Name="LoginUsers" EntityType="Self.LoginUser" />
+          <EntitySet Name="Roles" EntityType="Self.Role" />
+          <AssociationSet Name="fk_LoginUser_Role" Association="Self.fk_LoginUser_Role">
+            <End Role="Role" EntitySet="Roles" />
+            <End Role="LoginUser" EntitySet="LoginUsers" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Covid19LoanDBModelStoreContainer" CdmEntityContainer="Covid19LoanDBEntities">
+          <EntitySetMapping Name="Branches">
+            <EntityTypeMapping TypeName="Covid19LoanDBModel.Branch">
+              <MappingFragment StoreEntitySet="Branch">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="branch_code" ColumnName="branch_code" />
+                <ScalarProperty Name="branch_name" ColumnName="branch_name" />
+                <ScalarProperty Name="region" ColumnName="region" />
+                <ScalarProperty Name="BBCode" ColumnName="BBCode" />
+                <ScalarProperty Name="RoutingNo" ColumnName="RoutingNo" />
+                <ScalarProperty Name="agentID" ColumnName="agentID" />
+                <ScalarProperty Name="agentSequence" ColumnName="agentSequence" />
+                <ScalarProperty Name="token" ColumnName="token" />
+                <ScalarProperty Name="Address1" ColumnName="Address1" />
+                <ScalarProperty Name="Address2" ColumnName="Address2" />
+                <ScalarProperty Name="Address3" ColumnName="Address3" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="MainOffice" ColumnName="MainOffice" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="StoreNum" ColumnName="StoreNum" />
+                <ScalarProperty Name="ISO" ColumnName="ISO" />
+                <ScalarProperty Name="ZIP" ColumnName="ZIP" />
+                <ScalarProperty Name="POSStatus" ColumnName="POSStatus" />
+                <ScalarProperty Name="UnitProfileID" ColumnName="UnitProfileID" />
+                <ScalarProperty Name="AgentPIN" ColumnName="AgentPIN" />
+                <ScalarProperty Name="RAMS" ColumnName="RAMS" />
+                <ScalarProperty Name="Partyno" ColumnName="Partyno" />
+                <ScalarProperty Name="HQPartyno" ColumnName="HQPartyno" />
+                <ScalarProperty Name="UnitOffice" ColumnName="UnitOffice" />
+                <ScalarProperty Name="Legacy" ColumnName="Legacy" />
+                <ScalarProperty Name="bankID" ColumnName="bankID" />
+                <ScalarProperty Name="XPreceivingagentcode" ColumnName="XPreceivingagentcode" />
+                <ScalarProperty Name="Upazila" ColumnName="Upazila" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LoginUsers">
+            <EntityTypeMapping TypeName="Covid19LoanDBModel.LoginUser">
+              <MappingFragment StoreEntitySet="LoginUser">
+                <ScalarProperty Name="userID" ColumnName="userID" />
+                <ScalarProperty Name="userPass" ColumnName="userPass" />
+                <ScalarProperty Name="userName" ColumnName="userName" />
+                <ScalarProperty Name="userRole" ColumnName="userRole" />
+                <ScalarProperty Name="branch_code" ColumnName="branch_code" />
+                <ScalarProperty Name="user_status" ColumnName="user_status" />
+                <ScalarProperty Name="first_login" ColumnName="first_login" />
+                <ScalarProperty Name="makerID" ColumnName="makerID" />
+                <ScalarProperty Name="makerTime" ColumnName="makerTime" />
+                <ScalarProperty Name="checkerID" ColumnName="checkerID" />
+                <ScalarProperty Name="checkerTime" ColumnName="checkerTime" />
+                <ScalarProperty Name="updatedBY" ColumnName="updatedBY" />
+                <ScalarProperty Name="updateTime" ColumnName="updateTime" />
+                <ScalarProperty Name="UserMobile" ColumnName="UserMobile" />
+                <ScalarProperty Name="bankID" ColumnName="bankID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="Covid19LoanDBModel.Role">
+              <MappingFragment StoreEntitySet="Role">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="role_name" ColumnName="role_name" />
+                <ScalarProperty Name="role_priority" ColumnName="role_priority" />
+                <ScalarProperty Name="role_description" ColumnName="role_description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,121 @@
+﻿@model BKBNIDVerify.Models.FailureResponse
+
+@{
+    ViewBag.Title = "Error";
+
+}
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script>
+
+    function printContent(el) {
+        var restorepage = document.body.innerHTML;
+        var printcontent = document.getElementById(el).innerHTML;
+        document.body.innerHTML = printcontent;
+        window.print();
+        document.body.innerHTML = restorepage;
+    }
+</script>
+
+
+<div id="content">
+    <table id="t01" class="center">
+
+
+
+
+
+
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.errorResponse.field)
+
+            </td>
+            <td colspan="5">
+                @Html.DisplayFor(model => model.errorResponse.field)
+            </td>
+
+        </tr>
+
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.errorResponse.message)
+
+            </td>
+            <td colspan="5">
+                @Html.DisplayFor(model => model.errorResponse.message)
+            </td>
+
+        </tr>
+
+        <tr>
+
+            <td>
+                @Html.DisplayNameFor(model => model.status)
+            </td>
+            <td colspan="3">
+                @Html.DisplayFor(model => model.statusCode)
+            </td>
+        </tr>
+
+
+    </table>
+
+    <style>
+        table#t01 {
+            width: 70%;
+            height: auto;
+            background-color: #f1f1c1;
+        }
+
+        .center {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        table#t01 tr:nth-child(even) {
+            background-color: #eee;
+        }
+
+        table#t01 tr:nth-child(otd) {
+            background-color: #fff;
+        }
+
+        table#t01 th {
+            color: white;
+            background-color: blue;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 2px;
+            width: auto;
+            height: 10px;
+        }
+    </style>
+</div>
+
+
+
+<p style="text-align:center;">
+    <input id="printdiv" type="submit" value="Print" onclick="printContent('content')" />
+
+    @Html.ActionLink("Verify NID", "Index")
+</p>
+

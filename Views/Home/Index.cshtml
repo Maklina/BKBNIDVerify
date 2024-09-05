@@ -1,0 +1,125 @@
+﻿@model BKBNIDVerify.Models.GETNIDDetails
+@{
+    ViewBag.Title = "Get NID Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Verify NID Details</h2>
+@if (TempData["error"] != null)
+{
+    if (TempData["error"].ToString() == "Object reference not set to an instance of an object.")
+    {
+        <h4 style="color:red"> Failed to establish connection with NID server</h4>
+    }
+    else if (TempData["error"].ToString() == "The remote server returned an error: (400) Bad Request.")
+    {
+        <h4 style="color:red"> Invalid NID or Date Of Birth</h4>
+    }
+    else
+    {
+        <h4 style="color:red">@TempData["error"]</h4>
+    }
+}
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div>
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="row">
+            <div class="form-group col-xs-3">
+
+                @Html.LabelFor(model => model.nid, htmlAttributes: new { @class = "control-label" }))
+                @Html.EditorFor(model => model.nid, new { htmlAttributes = new { @class = "form-control input-sm" } })
+                @Html.ValidationMessageFor(model => model.nid, "", new { @class = "text-danger" })
+
+            </div>
+            <div class="form-group col-xs-3">
+                @Html.LabelFor(model => model.dob, htmlAttributes: new { @class = "control-label" })
+                @Html.EditorFor(model => model.dob, new { htmlAttributes = new { @class = "form-control datepicker" } })
+                @Html.ValidationMessageFor(model => model.dob, "", new { @class = "text-danger" })
+
+                @*@Html.EditorFor(model => model.dob, new { htmlAttributes = new { @class = "form-control input-sm" } })
+                    @Html.ValidationMessageFor(model => model.dob, "", new { @class = "text-danger" })*@
+
+
+            </div>
+
+            <br />
+
+            <input type="submit" value="Search" id="btnSubmit" class="btn btn-default btn-primary" />
+
+
+        </div>
+    </div>
+}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+
+        $("#nid").keypress(function (e) {
+            if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+                $("#errmsg").html("Digits Only").show().fadeOut("slow");
+                return false;
+            }
+        });
+
+
+        $("#btnSubmit").click(function () {
+            debugger;
+            var message = validateInput();
+            if (message == "true") {
+            } else {
+                alert(message);
+                return false;
+            }
+        });
+
+
+
+
+    });
+
+
+
+
+    function validateInput() {
+        debugger;
+        var message = "";
+        var NID = $("#nid").val();
+        if (NID.length == 0) {
+            message = message + "Please input NID Number *\n";
+        }
+
+        if (NID.length != 0 && NID.length != 10 && NID.length != 17) {
+
+            message = message + "NID must have 10 or 17 digits.\n";
+        }
+
+
+
+
+
+        var DOB = new Date($("#dob").val()); //Bind to the first name with class f-name01
+        if ($("#dob").val().length == 0) {
+            message = message + "Please input Date Of Birth. *\n";
+        }
+
+        var currentdate = new Date();
+        var diff = new Date(currentdate - DOB);
+
+        if (diff < 0) {
+            message = message + "Future date is not allowed in Date Of Birth .\n";
+        }
+        var EmployeeDOB = new Date($("#EmployeeDOB").val()); //Bind to the first name with class f-name01
+
+
+        return message.length == 0 ? "true" : message;
+    }
+</script>
+
+
+
